@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personalization Flywheel: a product concept for FanDuel's Data Products team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#061a33;--navy2:#0b2547;--navy3:#12325c;--blue:#1493ff;--blue2:#0a6fd6;--sky:#d9ecff;--white:#fff;--ink:#0b1b30;--mut:#8aa4c8;--line:#1d3e6b;--green:#19c37d;--amber:#ffb020;--card:#ffffff;--soft:#eef5ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--navy);color:#fff;font-family:Inter,system-ui,Arial,sans-serif;line-height:1.45}
+a{color:#7cc0ff}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.cond{font-family:'Barlow Condensed',Inter,sans-serif;letter-spacing:.01em}
+/* hero */
+.hero{padding:40px 0 10px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:end}
+.eyebrow{display:inline-block;background:rgba(20,147,255,.15);color:#8fcbff;border:1px solid rgba(20,147,255,.35);border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:54px;line-height:.98;margin:14px 0 12px;font-weight:800;text-transform:uppercase}
+h1 span{color:var(--blue)}
+.lead{color:#c3d5ee;font-size:16px;max-width:600px;margin:0}
+.by{margin-top:14px;font-size:13px;color:var(--mut)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--navy2);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat .k{font-size:11px;color:var(--mut);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.stat .v{font-size:14px;margin-top:3px;color:#e8f1ff}
+.disc{font-size:11.5px;color:#6f89ad;margin-top:12px}
+/* section */
+section{padding:46px 0 10px}
+.sh{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.num{font-size:15px;font-weight:800;color:var(--blue)}
+h2{font-size:38px;margin:0;text-transform:uppercase;font-weight:800;line-height:1}
+.sdesc{color:#b7cbe6;font-size:15px;max-width:720px;margin:6px 0 22px}
+/* demo layout */
+.demo{display:grid;grid-template-columns:380px 1fr;gap:34px;align-items:start}
+.phone{width:360px;height:740px;border-radius:46px;background:#000;padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 2px #23466f inset;position:relative;margin:0 auto}
+.screen{width:100%;height:100%;border-radius:36px;overflow:hidden;background:#f2f6fb;color:var(--ink);display:flex;flex-direction:column;position:relative}
+.notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:110px;height:28px;background:#000;border-radius:20px;z-index:5}
+.status{height:44px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:flex-end;padding:0 24px 4px}
+.appbar{background:var(--blue);color:#fff;padding:6px 14px 10px;display:flex;align-items:center;justify-content:space-between}
+.appbar .ttl{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:24px;font-weight:800;text-transform:uppercase}
+.bal{background:rgba(255,255,255,.18);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700}
+.tabs{background:var(--blue2);display:flex;gap:6px;padding:8px 10px;overflow:hidden}
+.tab{flex:none;font-size:11.5px;font-weight:700;color:#d6ebff;padding:5px 10px;border-radius:999px}
+.tab.on{background:#fff;color:var(--blue2)}
+.feed{flex:1;overflow:hidden;padding:10px;position:relative}
+.ctx{font-size:11px;color:#5d7598;font-weight:600;margin:0 2px 8px;display:flex;justify-content:space-between}
+.c{background:#fff;border-radius:14px;padding:10px 12px;margin-bottom:9px;box-shadow:0 1px 3px rgba(10,40,80,.12);display:flex;gap:10px;align-items:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s}
+.ic{width:42px;height:42px;font-size:13px!important;border-radius:11px;display:grid;place-items:center;flex:none;color:#fff;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:15px}
+.c .tt{font-weight:700;font-size:13px;line-height:1.25}
+.c .sb{font-size:11px;color:#5d7598;margin-top:1px}
+.c .why{font-size:10.5px;color:var(--blue2);font-weight:700;margin-top:3px}
+.c .why.x{color:#0e9a62}
+.cta{margin-left:auto;flex:none;background:var(--blue);color:#fff;font-size:11px;font-weight:800;border-radius:8px;padding:6px 9px}
+.c.rg{background:#fff7e6;border:1.5px solid var(--amber)}
+.c.rg .cta{background:#b36b00}
+.c.new{animation:pop .5s ease}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.nav{height:62px;background:#fff;border-top:1px solid #dbe5f2;display:flex;justify-content:space-around;align-items:center;font-size:10px;font-weight:700;color:#7a8ea9}
+.nav div{display:flex;flex-direction:column;align-items:center;gap:3px}
+.nav i{width:20px;height:20px;border-radius:6px;background:#d3deec;display:block}
+.nav .on{color:var(--blue)}.nav .on i{background:var(--blue)}
+/* controls */
+.panel{background:var(--navy2);border:1px solid var(--line);border-radius:18px;padding:18px}
+.q{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chip{border:1.5px solid var(--line);background:var(--navy3);color:#dbe9ff;border-radius:999px;padding:8px 13px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
+.chip:hover{border-color:#3a6aa6}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.av{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff}
+.who{font-size:13px;color:#b7cbe6;margin:-8px 0 16px;min-height:20px}
+.alert{border-radius:12px;padding:10px 12px;font-size:13px;margin-bottom:12px}
+.alert.rg{background:rgba(255,176,32,.12);border:1px solid rgba(255,176,32,.5);color:#ffd68a}
+.alert.cold{background:rgba(20,147,255,.12);border:1px solid rgba(20,147,255,.45);color:#a9d6ff}
+details{margin-top:6px}
+summary{cursor:pointer;font-size:13px;font-weight:700;color:#8fcbff}
+pre{background:#020d1c;border:1px solid var(--line);color:#bfe0ff;border-radius:12px;padding:12px;font-size:11.5px;max-height:300px;overflow:auto;margin:10px 0 0}
+.small{font-size:12px;color:var(--mut);margin-top:10px}
+/* flywheel */
+.fw{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start}
+.ring{background:var(--navy2);border:1px solid var(--line);border-radius:18px;padding:12px}
+.ring svg{width:100%;height:auto;display:block}
+.ideas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.idea{background:#fff;color:var(--ink);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:transform .15s,border-color .15s;position:relative}
+.idea:hover{transform:translateY(-2px)}
+.idea.sel{border-color:var(--blue)}
+.idea .rk{position:absolute;top:12px;right:12px;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:22px;color:#c7d6ea}
+.idea .tt{font-weight:700;font-size:13.5px;padding-right:26px;line-height:1.3}
+.idea .money{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:30px;font-weight:800;color:var(--blue2);margin-top:8px;line-height:1}
+.idea .ml{font-size:10.5px;color:#5d7598;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.idea .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:10.5px;font-weight:800;border-radius:999px;padding:3px 8px;background:var(--soft);color:#24518a}
+.tag.rg{background:#fff1d6;color:#9a5c00}
+.tag.go{background:#dcf7ea;color:#0b7a4b}
+.tag.wait{background:#eceff4;color:#5d6b80}
+.lift{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:11px;color:#5d7598;font-weight:700}
+.lift input{flex:1;accent-color:var(--blue)}
+.lanes{margin-top:18px;background:var(--navy2);border:1px solid var(--line);border-radius:18px;padding:16px}
+.lanehead{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.seg{display:flex;background:var(--navy3);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:#bcd3f0;font:inherit;font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--blue);color:#fff}
+.lane{display:grid;grid-template-columns:62px 1fr;align-items:center;gap:8px;margin:7px 0}
+.lane .ln{font-size:11px;font-weight:800;color:var(--mut);text-transform:uppercase}
+.track{position:relative;height:34px;background:repeating-linear-gradient(90deg,#0f2d55 0,#0f2d55 calc(100%/13 - 2px),#0b2547 calc(100%/13 - 2px),#0b2547 calc(100%/13))}
+.bar{position:absolute;top:3px;bottom:3px;border-radius:8px;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:0 8px;display:flex;align-items:center;white-space:nowrap;overflow:hidden;cursor:pointer}
+.bar.rg{background:#c77d00}
+.bar.sel{outline:2px solid #fff}
+.weeks{display:grid;grid-template-columns:62px repeat(13,1fr);gap:0;font-size:10px;color:#6f89ad;margin-top:4px}
+.sheet{margin-top:18px;background:#fff;color:var(--ink);border-radius:18px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sheet h3{margin:0 0 10px;font-size:22px;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;text-transform:uppercase;line-height:1.05}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.kpi{background:var(--soft);border-radius:12px;padding:10px}
+.kpi .v{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:24px;font-weight:800;color:var(--blue2);line-height:1}
+.kpi .l{font-size:10.5px;font-weight:700;color:#5d7598;text-transform:uppercase;margin-top:3px}
+.rows{font-size:13px;display:grid;gap:6px}
+.rows b{color:#24518a}
+.btn{font:inherit;font-size:13px;font-weight:800;border-radius:10px;padding:9px 14px;cursor:pointer;border:2px solid var(--blue);background:var(--blue);color:#fff}
+.btn.ghost{background:#fff;color:var(--blue2)}
+.btn:disabled{opacity:.55}
+.ai{white-space:pre-wrap;background:#f4f8fe;border:1px solid #d6e3f3;border-radius:12px;padding:12px;font-size:13px;min-height:150px;margin-top:10px}
+/* plan */
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pc{background:var(--navy2);border:1px solid var(--line);border-radius:18px;padding:18px}
+.pc h3{margin:0 0 10px;font-size:24px;text-transform:uppercase;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;color:#fff}
+.pc ol,.pc ul{margin:0;padding-left:18px;color:#c9daf0;font-size:13.5px}
+.pc li{margin-bottom:6px}
+.pc li b{color:#fff}
+footer{padding:40px 0 50px;color:#6f89ad;font-size:12px}
+@media(max-width:1000px){.hero,.demo,.fw,.sheet{grid-template-columns:1fr}.ideas,.plan{grid-template-columns:1fr 1fr}h1{font-size:42px}}
+@media(max-width:600px){.ideas,.plan,.stats{grid-template-columns:1fr}.phone{transform:scale(.9);transform-origin:top center;margin-bottom:-70px}h1{font-size:36px}h2{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <div class="hero">
+  <div>
+   <span class="eyebrow">Product concept · Data Product Manager, Personalization</span>
+   <h1 class="cond">One app. One customer.<br><span>Every screen personalized.</span></h1>
+   <p class="lead">Most good personalization ideas never get tested. Experiment slots are scarce and readouts are slow. Here is the product I'd build to fix that: one ranking service behind every screen, and a flywheel that puts each test slot on the idea worth the most.</p>
+   <div class="by">By <b style="color:#fff">Vidhi Parekh</b> · <a href="https://www.linkedin.com/in/vidhi-parekh">LinkedIn</a> · <a href="https://github.com/vidhi20">GitHub</a> · <a href="https://vidhiparekh.com">Portfolio</a></div>
+  </div>
+  <div>
+   <div class="stats">
+    <div class="stat"><div class="k">Users</div><div class="v">Product managers, data scientists and analysts in every business unit</div></div>
+    <div class="stat"><div class="k">Ships first</div><div class="v">Idea queue with offline pre-test and value ranking</div></div>
+    <div class="stat"><div class="k">North star</div><div class="v">Validated wins per quarter</div></div>
+    <div class="stat"><div class="k">Guardrails</div><div class="v">Responsible gaming, opt-outs, p95 latency</div></div>
+   </div>
+   <div class="disc">Independent concept by Vidhi Parekh. Not affiliated with or endorsed by FanDuel. All customers, content and numbers are simulated.</div>
+  </div>
+ </div>
+
+ <section id="service">
+  <div class="sh"><span class="num cond">01</span><h2 class="cond">Same app, different home screen</h2></div>
+  <p class="sdesc">The app sends three things to one ranking service: who the customer is, which page they're on and what's happening right now. Tap the options and watch the home feed reorder.</p>
+  <div class="demo">
+   <div class="phone"><div class="notch"></div><div class="screen">
+    <div class="status"><span>9:41</span><span>5G ▮▮▮</span></div>
+    <div class="appbar"><span class="ttl" id="pTitle">Home</span><span class="bal">$250.00</span></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="feed"><div class="ctx"><span id="ctxL"></span><span>For you</span></div><div id="feed"></div></div>
+    <div class="nav"><div class="on" id="nHome"><i></i>Home</div><div id="nSb"><i></i>Sports</div><div id="nCs"><i></i>Casino</div><div><i></i>Racing</div><div><i></i>Account</div></div>
+   </div></div>
+   <div class="panel">
+    <p class="q">Who's opening the app?</p><div class="chips" id="custChips"></div>
+    <div class="who" id="who"></div>
+    <p class="q">Where are they?</p><div class="chips" id="pageChips"></div>
+    <p class="q">What's happening?</p><div class="chips" id="momChips"></div>
+    <p class="q">Cross-sell exploration</p><div class="chips" id="expChips"></div>
+    <div id="alerts"></div>
+    <details><summary>See the API response (same format for every screen)</summary><pre id="json"></pre></details>
+    <div class="small">Scores for each customer and product are precomputed. Only the page and moment boosts apply at request time, to stay under a 50 ms p95 target.</div>
+   </div>
+  </div>
+ </section>
+
+ <section id="flywheel">
+  <div class="sh"><span class="num cond">02</span><h2 class="cond">The experiment flywheel</h2></div>
+  <p class="sdesc">Every idea is pre-tested on past traffic, then ranked by expected <b>dollars per test slot each week</b>. Drag a lift slider to see the plan reshuffle. Tap any idea for its test design.</p>
+  <div class="fw">
+   <div class="ring"><svg viewBox="0 0 320 320" aria-label="Flywheel loop: idea, pre-test, prioritize, run, read out">
+    <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1493ff"/></marker></defs>
+    <circle cx="160" cy="160" r="112" fill="none" stroke="#1d3e6b" stroke-width="18"/>
+    <circle cx="160" cy="160" r="112" fill="none" stroke="#1493ff" stroke-width="4" stroke-dasharray="40 30" marker-end="url(#ah)"><animateTransform attributeName="transform" type="rotate" from="0 160 160" to="360 160 160" dur="18s" repeatCount="indefinite"/></circle>
+    <g font-family="Barlow Condensed, sans-serif" font-weight="800" text-anchor="middle">
+     <text x="160" y="156" fill="#fff" font-size="19">EACH RESULT</text><text x="160" y="176" fill="#1493ff" font-size="19">FEEDS THE NEXT</text>
+    </g>
+    <g font-family="Inter, sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#fff" id="nodes"></g>
+   </svg></div>
+   <div>
+    <div class="ideas" id="ideas"></div>
+   </div>
+  </div>
+  <div class="lanes">
+   <div class="lanehead"><div class="q" style="margin:0">Next 13 weeks · live test slots</div>
+    <div class="seg" id="slotSeg"><button data-s="2">2 slots</button><button data-s="3" class="on">3 slots</button><button data-s="4">4 slots</button></div></div>
+   <div id="lanes"></div>
+   <div class="weeks"></div>
+  </div>
+  <div class="sheet" id="sheet"></div>
+ </section>
+
+ <section id="plan">
+  <div class="sh"><span class="num cond">03</span><h2 class="cond">How I'd ship it</h2></div>
+  <p class="sdesc">Small releases, each useful on its own.</p>
+  <div class="plan">
+   <div class="pc"><h3>Releases</h3><ol>
+    <li><b>Idea queue</b> that checks sample size and weeks to read. No model needed.</li>
+    <li><b>Offline pre-tests</b>, starting with sportsbook home.</li>
+    <li><b>Ranking API v1</b> behind 2 screens.</li>
+    <li><b>AI-drafted</b> hypotheses and readouts that analysts edit.</li></ol></div>
+   <div class="pc"><h3>Metrics</h3><ul>
+    <li><b>North star:</b> validated wins per quarter</li>
+    <li><b>Inputs:</b> ideas pre-tested per week, days from idea to readout</li>
+    <li><b>Product:</b> engagement and 7-day retention</li>
+    <li><b>Guardrails:</b> responsible gaming triggers, opt-outs, latency</li></ul></div>
+   <div class="pc"><h3>Trade-offs</h3><ul>
+    <li><b>Accuracy vs latency:</b> precompute scores, rerank only the top 50 live</li>
+    <li><b>Cost:</b> the LLM drafts test plans and readouts, never ranks live traffic</li>
+    <li><b>New customers:</b> popular items for their state and moment until about 5 sessions</li>
+    <li><b>Decisions:</b> a DACI for each screen owner</li></ul></div>
+  </div>
+ </section>
+
+ <footer>Independent product concept by Vidhi Parekh for FanDuel's Data Product Manager, Personalization role. Not affiliated with or endorsed by FanDuel. All data is simulated. Related builds: <a href="https://github.com/vidhi20/GrocerIQ">GrocerIQ</a> (collaborative filtering, segmentation) and <a href="https://github.com/vidhi20/FinRag">FinRAG</a> (hybrid ranking with reranking).</footer>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const COL={sportsbook:"#1493ff",casino:"#7b3fe4",racing:"#0e9a62",predictions:"#e5484d",fantasy:"#f07c00",social:"#d6409f",editorial:"#3b5b85",video:"#0aa3b8",payments:"#556b8a",rg:"#b36b00"};
+const CUSTOMERS=[
+ {id:"c_maya",nm:"Maya",ini:"M",col:"#1493ff",desc:"NFL bettor for 2 years. Has never opened casino.",aff:{sportsbook:.92,fantasy:.55,editorial:.45,video:.4,predictions:.2,social:.3,casino:.04,racing:.05,payments:.2},adj:["fantasy","predictions"]},
+ {id:"c_leo",nm:"Leo",ini:"L",col:"#7b3fe4",desc:"Slots player, mostly weekend evenings.",aff:{casino:.93,sportsbook:.25,social:.35,video:.2,editorial:.1,predictions:.1,fantasy:.05,racing:.05,payments:.25},adj:["sportsbook"]},
+ {id:"c_ana",nm:"Ana",ini:"A",col:"#0e9a62",desc:"Horse racing regular who also follows the NFL.",aff:{racing:.95,sportsbook:.3,video:.5,editorial:.4,casino:.1,predictions:.1,fantasy:.05,social:.2,payments:.2},adj:["sportsbook","video"]},
+ {id:"c_sam",nm:"Sam",ini:"S",col:"#b36b00",desc:"Over his own session-time limit this week.",aff:{sportsbook:.85,casino:.6,predictions:.4,fantasy:.3,editorial:.3,video:.3,social:.3,racing:.1,payments:.3},adj:["casino"],rg:"Sam is over his own weekly session-time limit, so promotions and cross-sell are switched off and his limit tools come first."},
+ {id:"c_new",nm:"New signup",ini:"N",col:"#556b8a",desc:"Day 1. No history yet.",aff:null,adj:[]}
+];
+const PAGES=[{id:"home",nm:"Home",own:null},{id:"sb_lobby",nm:"Sportsbook",own:"sportsbook"},{id:"casino_lobby",nm:"Casino",own:"casino"},{id:"post_bet",nm:"Bet placed",own:null}];
+const MOMENTS=[{id:"sun_pre",nm:"Sunday, pre-kickoff",boost:{sportsbook:.25,fantasy:.2,editorial:.1}},{id:"live",nm:"Live game",boost:{sportsbook:.3,video:.25,social:.15}},{id:"weeknight",nm:"Quiet weeknight",boost:{casino:.2,predictions:.15,editorial:.1}},{id:"race_day",nm:"Race day",boost:{racing:.35,video:.1}}];
+const ITEMS=[
+ {id:"sb_sgp",v:"sportsbook",ab:"SGP",t:"Build a same-game parlay",s:"Kansas City vs Buffalo · 7:20 PM",cta:"Build",pop:.8},
+ {id:"sb_props",v:"sportsbook",ab:"PROP",t:"Player props for your team",s:"Passing yards · TD scorers",cta:"View",pop:.7},
+ {id:"sb_boost",v:"sportsbook",ab:"ODDS",t:"Odds boost on tonight's game",s:"+350 → +450",cta:"Bet",pop:.75,promo:true},
+ {id:"cs_new",v:"casino",ab:"SLOT",t:"New slot releases this week",s:"5 new games",cta:"Play",pop:.6},
+ {id:"cs_bonus",v:"casino",ab:"FREE",t:"Casino bonus spins",s:"Offer ends Sunday",cta:"Claim",pop:.55,promo:true},
+ {id:"rc_card",v:"racing",ab:"RACE",t:"Race card: your favorite tracks",s:"Race 4 · post time 2:15 PM",cta:"View",pop:.5},
+ {id:"pr_mkt",v:"predictions",ab:"PRED",t:"Trending prediction markets",s:"12 markets moving today",cta:"Trade",pop:.45},
+ {id:"fn_contest",v:"fantasy",ab:"DFS",t:"Daily fantasy contests closing",s:"Lineups lock in 30 min",cta:"Enter",pop:.55},
+ {id:"so_feed",v:"social",ab:"SOC",t:"What your friends are picking",s:"4 friends active",cta:"See",pop:.4},
+ {id:"ed_preview",v:"editorial",ab:"READ",t:"Expert game preview",s:"3 min read",cta:"Read",pop:.5},
+ {id:"vd_high",v:"video",ab:"VID",t:"Highlights from your last game",s:"2:14 clip",cta:"Watch",pop:.45},
+ {id:"py_fast",v:"payments",ab:"PAY",t:"Faster withdrawals",s:"Link your bank in 1 minute",cta:"Link",pop:.3}
+];
+const RG={id:"rg_tools",v:"rg",ab:"TIME",t:"Take a break or adjust your limits",s:"You set a weekly session limit",cta:"Open",rg:true};
+const st={c:"c_maya",p:"home",m:"sun_pre",x:1};
+function chips(el,arr,key,label){$(el).innerHTML=arr.map(a=>`<button class="chip ${st[key]===a.id?"on":""}" data-k="${key}" data-v="${a.id}">${a.ini?`<span class="av" style="background:${a.col}">${a.ini}</span>`:""}${a.nm}</button>`).join("")}
+function drawChips(){chips("#custChips",CUSTOMERS,"c");chips("#pageChips",PAGES,"p");chips("#momChips",MOMENTS,"m");chips("#expChips",[{id:0,nm:"Off"},{id:1,nm:"1 slot"},{id:2,nm:"2 slots"}],"x");
+ document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{const k=b.dataset.k;st[k]=k==="x"?+b.dataset.v:b.dataset.v;drawChips();rank()})}
+function rank(){
+ const c=CUSTOMERS.find(x=>x.id===st.c),p=PAGES.find(x=>x.id===st.p),m=MOMENTS.find(x=>x.id===st.m);
+ const cold=!c.aff,rg=!!c.rg,ex=st.x;
+ $("#who").textContent=c.desc;
+ const sc=ITEMS.filter(i=>!(rg&&i.promo)).map(i=>{const r=[];let s=0;const a=cold?0:(c.aff[i.v]||0);
+  if(!cold){s+=.5*a;if(a>.5)r.push(`Because you like ${i.v}`)}
+  const mb=m.boost[i.v]||0;s+=mb;if(mb&&!r.length)r.push("Fits right now");
+  if(p.own){if(i.v===p.own){s+=.35;if(!r.length)r.push("Matches this page")}else s-=.15}
+  if(p.id==="post_bet"&&["video","editorial","social"].includes(i.v)){s+=.25;r.unshift("After your bet")}
+  if(p.id==="post_bet"&&i.v==="sportsbook")s-=.2;
+  s+=(cold?.45:.15)*i.pop;if(cold)r.push("Popular in your state");
+  if(!r.length)r.push("Popular now");
+  return{...i,score:s,r,a}}).sort((x,y)=>y.score-x.score);
+ let top=sc.slice(0,5);
+ if(!cold&&ex>0&&!rg){const xs=sc.filter(i=>c.adj.includes(i.v)&&!top.slice(0,5-ex).includes(i)&&i.a<.6).slice(0,ex);
+  top=top.filter(i=>!xs.includes(i)).slice(0,5-xs.length);xs.forEach((x,k)=>{x.r=["Try something new"];x.cross=true;top.splice(Math.min(1+k*2,top.length),0,x)})}
+ if(rg){top=top.slice(0,4);top.unshift({...RG,score:null,r:["Responsible gaming guardrail"]})}
+ // phone chrome
+ $("#pTitle").textContent=p.id==="post_bet"?"Bet placed ✓":p.nm;
+ const tabs=p.own==="casino"?["For you","Slots","Table","Live dealer","New"]:["For you","NFL","NBA","Casino","Racing","Predict"];
+ $("#tabs").innerHTML=tabs.map((t,i)=>`<span class="tab ${i===0?"on":""}">${t}</span>`).join("");
+ $("#ctxL").textContent=m.nm;
+ ["#nHome","#nSb","#nCs"].forEach(s=>$(s).classList.remove("on"));$(p.own==="sportsbook"?"#nSb":p.own==="casino"?"#nCs":"#nHome").classList.add("on");
+ // FLIP
+ const feed=$("#feed"),prev={};feed.querySelectorAll(".c").forEach(e=>prev[e.dataset.id]=e.getBoundingClientRect().top);
+ feed.innerHTML=top.map(i=>`<div class="c ${i.rg?"rg":""} ${prev[i.id]===undefined?"new":""}" data-id="${i.id}"><div class="ic" style="background:${COL[i.v]}">${i.ab}</div><div style="min-width:0"><div class="tt">${i.t}</div><div class="sb">${i.s}</div><div class="why ${i.cross?"x":""}">${i.r[0]}</div></div><span class="cta">${i.cta}</span></div>`).join("");
+ feed.querySelectorAll(".c").forEach(e=>{const o=prev[e.dataset.id];if(o!==undefined){const d=o-e.getBoundingClientRect().top;if(d){e.style.transition="none";e.style.transform=`translateY(${d}px)`;requestAnimationFrame(()=>requestAnimationFrame(()=>{e.style.transition="";e.style.transform=""}))}}});
+ let al="";if(rg)al+=`<div class="alert rg"><b>Guardrail on.</b> ${c.rg}</div>`;if(cold)al+=`<div class="alert cold"><b>No history yet.</b> Ranked by what's popular in the customer's state right now, until about 5 sessions of history exist.</div>`;
+ $("#alerts").innerHTML=al;
+ $("#json").textContent=JSON.stringify({customer_id:c.id,surface:p.id,moment:m.id,guardrails:{responsible_gaming:rg?"promotions_suppressed":"clear"},items:top.map((i,k)=>({rank:k+1,content_id:i.id,product:i.v==="rg"?"responsible_gaming":i.v,score:i.score==null?null:+i.score.toFixed(3),reason:i.r[0]}))},null,2);
+}
+drawChips();rank();
+
+// flywheel ring nodes
+const NODES=["IDEA","PRE-TEST","PRIORITIZE","RUN","READ OUT"];
+$("#nodes").innerHTML=NODES.map((n,k)=>{const a=-Math.PI/2+k*2*Math.PI/5,x=160+112*Math.cos(a),y=160+112*Math.sin(a);return `<g><circle cx="${x}" cy="${y}" r="30" fill="#1493ff" stroke="#061a33" stroke-width="4"/><text x="${x}" y="${y+4}" font-size="${n.length>8?8.5:10}">${n}</text></g>`}).join("");
+
+const IDEAS=[
+ {id:1,t:"Same-game parlay builder first on Home before kickoff",reach:400000,base:.040,lift:.06,val:9,rg:false,metric:"Bet placement rate from Home"},
+ {id:2,t:"Casino tile for NFL bettors after they place a bet",reach:250000,base:.012,lift:.15,val:14,rg:true,metric:"First casino session within 7 days"},
+ {id:3,t:"Racing card ordered by each customer's favorite tracks",reach:60000,base:.090,lift:.05,val:6,rg:false,metric:"Race wager rate from racing lobby"},
+ {id:4,t:"Day-1 home feed of popular markets in your state",reach:35000,base:.180,lift:.08,val:20,rg:false,metric:"Day-7 retention of new customers"},
+ {id:5,t:"Game highlights on the bet-placed screen",reach:300000,base:.070,lift:.04,val:2,rg:false,metric:"Return sessions within 48 hours"},
+ {id:6,t:"Prediction markets tile for daily fantasy players",reach:80000,base:.010,lift:.20,val:8,rg:true,metric:"First prediction trade within 14 days"}
+];
+let sel=1,slots=3;const W=13,ZA=1.959964,ZB=0.841621;
+const nArm=(p1,l)=>{const p2=p1*(1+l);return Math.ceil((ZA+ZB)**2*(p1*(1-p1)+p2*(1-p2))/((p2-p1)**2))};
+const money=n=>"$"+Math.round(n).toLocaleString("en-US");
+const fmt=n=>n>=1e6?(n/1e6).toFixed(1)+"M":Math.round(n/1e3)+"K";
+function plan(){
+ const rows=IDEAS.map(i=>{const n=nArm(i.base,i.lift),wk=Math.max(2,Math.ceil(n/(i.reach/2))),weekly=i.reach*i.base*i.lift*i.val;return{...i,n,wk,weekly,per:weekly/wk}}).sort((a,b)=>b.per-a.per);
+ const cap=Array(slots).fill(0);rows.forEach(r=>{const b=cap.indexOf(Math.min(...cap));if(cap[b]+r.wk<=W){r.slot=b;r.start=cap[b];cap[b]+=r.wk}else r.slot=null});
+ $("#ideas").innerHTML=rows.map((r,k)=>`<div class="idea ${r.id===sel?"sel":""}" data-id="${r.id}"><span class="rk">#${k+1}</span><div class="tt">${r.t}</div><div class="money">${money(r.per)}</div><div class="ml">per test slot each week</div><div class="meta"><span class="tag">${r.wk} wks to read</span><span class="tag">${fmt(r.reach)} users/wk</span>${r.rg?'<span class="tag rg">RG review</span>':""}${r.slot!=null?`<span class="tag go">Slot ${r.slot+1}, wk ${r.start+1}</span>`:'<span class="tag wait">Next quarter</span>'}</div><div class="lift">Pre-test lift <input type="range" min="1" max="40" value="${Math.round(r.lift*100)}" data-l="${r.id}" aria-label="Pre-test lift"><span>${Math.round(r.lift*100)}%</span></div></div>`).join("");
+ document.querySelectorAll(".idea").forEach(e=>e.onclick=ev=>{if(ev.target.tagName==="INPUT")return;sel=+e.dataset.id;plan()});
+ document.querySelectorAll("input[data-l]").forEach(e=>{e.oninput=()=>{e.nextElementSibling.textContent=e.value+"%"};e.onchange=()=>{IDEAS.find(x=>x.id===+e.dataset.l).lift=+e.value/100;plan()}});
+ let L="";for(let s=0;s<slots;s++){L+=`<div class="lane"><span class="ln">Slot ${s+1}</span><div class="track">${rows.filter(r=>r.slot===s).map(r=>`<div class="bar ${r.rg?"rg":""} ${r.id===sel?"sel":""}" data-id="${r.id}" style="left:${r.start/W*100}%;width:calc(${r.wk/W*100}% - 3px)" title="${r.t}">${r.t}</div>`).join("")}</div></div>`}
+ $("#lanes").innerHTML=L;document.querySelectorAll(".bar").forEach(b=>b.onclick=()=>{sel=+b.dataset.id;plan()});
+ document.querySelector(".weeks").innerHTML="<span></span>"+Array.from({length:W},(_,i)=>`<span>wk ${i+1}</span>`).join("");
+ const s=rows.find(r=>r.id===sel);
+ $("#sheet").innerHTML=`<div><div class="q" style="color:#5d7598">Test design</div><h3>${s.t}</h3>
+  <div class="kpis"><div class="kpi"><div class="v">${(s.n/1000).toFixed(1)}K</div><div class="l">users per arm</div></div><div class="kpi"><div class="v">${s.wk} wks</div><div class="l">to read</div></div><div class="kpi"><div class="v">${money(s.weekly)}</div><div class="l">weekly value if it holds</div></div></div>
+  <div class="rows"><div><b>Hypothesis:</b> this lifts ${s.metric.toLowerCase()} about ${Math.round(s.lift*100)}% from a ${(s.base*100).toFixed(1)}% baseline.</div><div><b>Primary metric:</b> ${s.metric}</div><div><b>Guardrails:</b> responsible gaming triggers, opt-outs, p95 latency, lost engagement elsewhere${s.rg?". Needs Responsible Gaming and Compliance sign-off first.":"."}</div><div><b>Rules:</b> 95% confidence, 80% power, 50/50 split, no peeking, at least 2 full weeks for novelty effects.</div></div></div>
+  <div><div class="q" style="color:#5d7598">AI-drafted readout plan</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="aiBtn" style="display:none">Draft with Claude</button><button class="btn ghost" id="tplBtn">Show template</button></div><div class="ai" id="aiOut">An LLM drafts the hypothesis, risks and decision rule, and an analyst edits and approves it. It saves analysis time without the model making the call.</div></div>`;
+ wire(s);
+}
+document.querySelectorAll("#slotSeg button").forEach(b=>b.onclick=()=>{slots=+b.dataset.s;document.querySelectorAll("#slotSeg button").forEach(x=>x.classList.toggle("on",x===b));plan()});
+let sample=null;
+const tpl=s=>`Hypothesis: ${s.t} lifts ${s.metric.toLowerCase()} by about ${Math.round(s.lift*100)}% from ${(s.base*100).toFixed(1)}%.
+Primary metric: ${s.metric}.
+Guardrails: responsible gaming triggers, opt-outs, p95 latency, lost engagement in other products.
+Traps: no peeking before ${s.n.toLocaleString("en-US")} users per arm; run 2+ full weeks for novelty effects; confirm the split landed 50/50.
+Decision: ship if the lift is significant and no guardrail worsens. Otherwise kill or iterate, and feed the result into the next pre-test.`;
+function wire(s){
+ $("#tplBtn").onclick=()=>{$("#aiOut").textContent=tpl(s)};
+ const b=$("#aiBtn");if(!sample)return;b.style.display="";
+ b.onclick=async()=>{b.disabled=true;$("#aiOut").textContent="Thinking...";
+  const prompt=`You help a product manager on a sports betting and gaming app's personalization team plan one A/B test. Write a concise plain-text plan (no markdown, under 160 words) with labeled lines: Hypothesis, Primary metric, Guardrail metrics (include responsible gaming signals), Biggest risks, Traps to avoid (peeking, underpowered tests, novelty effects), Decision rule. Data: idea="${s.t}"; primary metric="${s.metric}"; baseline=${(s.base*100).toFixed(1)}%; expected relative lift from offline replay=${Math.round(s.lift*100)}%; users per arm=${s.n}; duration=${s.wk} weeks; responsible gaming review required=${s.rg}.`;
+  try{await sample(prompt,{modelTier:"quick",onText:({text})=>{$("#aiOut").textContent=text}})}catch(e){$("#aiOut").textContent=tpl(s);if(e&&e.code==="not_granted")b.style.display="none"}finally{b.disabled=false}};
+}
+plan();
+(async()=>{try{if(window.claude&&claude.use){const s=await claude.use("sample");if(s){sample=s;plan()}}}catch(e){}})();
+</script>
+</body>
+</html>
